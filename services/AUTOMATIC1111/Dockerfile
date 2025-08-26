@@ -58,6 +58,8 @@ RUN \
   sed -i 's/in_app_dir = .*/in_app_dir = True/g' /opt/conda/lib/python3.10/site-packages/gradio/routes.py && \
   git config --global --add safe.directory '*'
 
+RUN sed -i 's/None, \*model_args, config=pretrained_model_name_or_path, state_dict={}, \*\*kwargs/pretrained_model_name_or_path, \*model_args, config=pretrained_model_name_or_path, state_dict={}, \*\*kwargs/' /stable-diffusion-webui/modules/sd_disable_initialization.py
+
 WORKDIR ${ROOT}
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV CLI_ARGS=""
